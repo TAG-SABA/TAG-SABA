@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر سبأ - TAG-SABA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #d97706;
+      --primary-hover: #b45309;
+      --bg: #090d16;
+      --card-bg: #131b2e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand img {
+      height: 48px;
+      width: auto;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #131b2e 0%, #090d16 100%);
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero h2 {
+      font-size: 2.1rem;
+      margin-bottom: 0.8rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 4px;
+      background: var(--primary);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: #fbbf24;
+    }
+
+    .product-image-wrap {
+      width: 100%;
+      height: 250px;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .product-image-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .product-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .order-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+
+    .order-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    footer {
+      background-color: #05070d;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <img src="logo1.png" alt="شعار متجر سبأ">
+        <h1>متجر سبأ | TAG-SABA</h1>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>وجهتكم للعطور ومستحضرات الجمال</h2>
+    <p>نوفر لكم منتجات مميزة تجمع بين الجودة والفخامة لتناسب جميع الأذواق.</p>
+  </section>
+
+  <!-- Products Section -->
+  <main class="container">
+    <h3 class="section-title">المنتجات المتوفرة</h3>
+
+    <div class="products-grid">
+      
+      <!-- منتج 1 -->
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="1.png" alt="زيت باراشوت بالبصل">
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">زيت باراشوت بالبصل</h4>
+          <p class="product-desc">تركيبة غنية بخلاصة البصل وجوز الهند لتغذية بصيلات الشعر والحد من التساقط وتعزيز النمو الصحي.</p>
+          <a href="#" class="order-btn">طلب المنتج</a>
+        </div>
+      </article>
+
+      <!-- منتج 2 -->
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="2.png" alt="مرطب فازلين الوردي">
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">مرطب فازلين الوردي</h4>
+          <p class="product-desc">ترطيب فائق ونعومة تدوم طويلاً مع لمسة وردية طبيعية وإشراقة صحية لجميع أنواع البشرة.</p>
+          <a href="#" class="order-btn">طلب المنتج</a>
+        </div>
+      </article>
+
+      <!-- منتج 3 -->
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="3.png" alt="سيروم فيتامين C لوف جوجو">
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">سيروم فيتامين C (لوف جوجو)</h4>
+          <p class="product-desc">سيروم مركز لتفتيح البشرة ومقاومة علامات الإجهاد والتجاعيد مع تحفيز الكولاجين الطبيعي.</p>
+          <a href="#" class="order-btn">طلب المنتج</a>
+        </div>
+      </article>
+
+      <!-- منتج 4 -->
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="4.png" alt="زبدة الجسم جوز الهند">
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">زبدة الجسم بجوز الهند</h4>
+          <p class="product-desc">قوام كريمي فاخر يمنح جسمك ترطيباً عميقاً برائحة جوز الهند المنعشة طوال اليوم.</p>
+          <a href="#" class="order-btn">طلب المنتج</a>
+        </div>
+      </article>
+
+      <!-- منتج 5 -->
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="5.png" alt="تونك الشعر فازلين">
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">تونك الشعر من فازلين</h4>
+          <p class="product-desc">يحافظ على صحة فروة الرأس ويمنح الشعر لمعاناً طبيعياً وحماية من الجفاف والعوامل الخارجية.</p>
+          <a href="#" class="order-btn">طلب المنتج</a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>جميع الحقوق محفوظة &copy; متجر سبأ (TAG-SABA)</p>
+  </footer>
+
+</body>
+</html>
