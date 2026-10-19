@@ -13,7 +13,7 @@
     :root {
       --bg-dark: #0a0c10;
       --card-bg: #12161f;
-      --card-inner: #181f2c;
+      --card-inner: #161c28;
       --gold: #d4af37;
       --gold-hover: #b8972c;
       --gold-btn: #e5a93b;
@@ -41,33 +41,35 @@
     /* الترويسة واللوجو */
     .header {
       text-align: center;
-      padding: 2.5rem 1rem 1.5rem;
+      padding: 2.2rem 1rem 1.4rem;
       background: radial-gradient(circle at top, #1e2638 0%, var(--bg-dark) 70%);
       border-bottom: 1px solid #2a2415;
     }
 
     .logo-container {
-      width: 110px;
-      height: 110px;
+      width: 125px;
+      height: 125px;
       margin: 0 auto 1.2rem;
       border-radius: 50%;
-      background: #ffffff;
-      box-shadow: 0 0 35px rgba(212, 175, 55, 0.25);
+      background: #0a0c10;
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.3);
       border: 3px solid var(--gold);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      padding: 4px;
     }
 
     .logo-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      border-radius: 50%;
     }
 
     .shop-title {
-      font-size: 1.8rem;
+      font-size: 1.85rem;
       font-weight: 900;
       color: #ffffff;
       margin-bottom: 0.3rem;
@@ -77,19 +79,19 @@
     .shop-subtitle {
       font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
 
     .shop-location {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #f59e0b;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       background: rgba(245, 158, 11, 0.08);
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 20px;
-      border: 1px solid rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.25);
     }
 
     /* شريط الأقسام */
@@ -147,7 +149,7 @@
 
     .product-card {
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
       border: 1px solid var(--border-color);
       display: flex;
@@ -161,26 +163,28 @@
       transform: translateY(-3px);
     }
 
+    /* مربع الصورة بدون خلفية بيضاء وبدون زوائد */
     .image-box {
       width: 100%;
-      height: 180px;
-      background: #ffffff;
+      height: 200px;
+      background: #0f141d;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
       position: relative;
+      overflow: hidden;
     }
 
     .image-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
       transition: transform 0.3s ease;
     }
 
     .product-card:hover .image-box img {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
 
     .product-details {
@@ -190,6 +194,7 @@
       flex-grow: 1;
       justify-content: space-between;
       background: var(--card-inner);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .category-tag {
@@ -294,7 +299,7 @@
   <!-- الترويسة الرئيسية -->
   <header class="header">
     <div class="logo-container">
-      <img src="logo1.png" alt="شعار متجر سبأ" onerror="this.src='https://placehold.co/150x150/ffffff/d4af37?text=TAG-SABA'">
+      <img src="logo1.png" alt="شعار متجر سبأ" onerror="this.src='https://placehold.co/150x150/0a0c10/d4af37?text=TAG-SABA'">
     </div>
     <h1 class="shop-title">متجر سبأ</h1>
     <p class="shop-subtitle">عطور أصلية، أدوات تجميل، عناية بالبشرة والشعر، وإكسسوارات</p>
@@ -335,19 +340,19 @@
       </article>
 
       <!-- منتج 2 -->
-      <article class="product-card" data-category="skin">
+      <article class="product-card" data-category="hair">
         <div class="image-box">
-          <img src="2.png" alt="مرطب فازلين الوردي">
+          <img src="2.png" alt="تونك فازلين الأزرق">
         </div>
         <div class="product-details">
           <div>
-            <div class="category-tag">عناية بالبشرة</div>
-            <h3 class="product-title">مرطب فازلين الوردي للشفاه واليدين</h3>
-            <p class="product-desc">يمنح بشرتك ترطيباً يدوم ونضارة وردية صحية وناعمة طوال اليوم.</p>
+            <div class="category-tag">عناية بالشعر</div>
+            <h3 class="product-title">تونك فازلين الأزرق للشعر</h3>
+            <p class="product-desc">يحمي فروة الرأس من الجفاف ويمنح الشعر حيوية ولمعاناً طبيعياً.</p>
           </div>
           <div>
             <div class="price-box">2,500 <span>ر.ي</span></div>
-            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20مرطب%20فازلين%20الوردي%20بسعر%202500%20ريال%20يمني" target="_blank" class="order-btn">
+            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20تونك%20فازلين%20الأزرق%20بسعر%202500%20ريال%20يمني" target="_blank" class="order-btn">
               <i class="fa-brands fa-whatsapp"></i> اطلب عبر واتساب
             </a>
           </div>
