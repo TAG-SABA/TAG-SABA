@@ -35,7 +35,7 @@
       background-color: var(--bg-dark);
       color: var(--text-main);
       line-height: 1.6;
-      padding-bottom: 90px;
+      padding-bottom: 95px;
     }
 
     /* الترويسة واللوجو */
@@ -47,25 +47,24 @@
     }
 
     .logo-container {
-      width: 125px;
-      height: 125px;
+      width: 120px;
+      height: 120px;
       margin: 0 auto 1.2rem;
       border-radius: 50%;
       background: #0a0c10;
-      box-shadow: 0 0 35px rgba(212, 175, 55, 0.3);
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
       border: 3px solid var(--gold);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 4px;
+      padding: 8px; /* تضمن ظهور الشعار كاملاً دون اقتصاص */
     }
 
     .logo-container img {
-      width: 100%;
-      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
-      border-radius: 50%;
     }
 
     .shop-title {
@@ -156,6 +155,7 @@
       flex-direction: column;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       transition: transform 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
     }
 
     .product-card:hover {
@@ -163,7 +163,6 @@
       transform: translateY(-3px);
     }
 
-    /* مربع الصورة بدون خلفية بيضاء وبدون زوائد */
     .image-box {
       width: 100%;
       height: 200px;
@@ -265,7 +264,7 @@
       background: #f59e0b;
     }
 
-    /* زر واتساب العائم */
+    /* زر تواصل واتساب العائم */
     .floating-whatsapp {
       position: fixed;
       bottom: 20px;
@@ -281,7 +280,7 @@
       font-weight: 700;
       font-size: 0.9rem;
       box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-      z-index: 999;
+      z-index: 99;
       transition: transform 0.2s ease;
     }
 
@@ -291,6 +290,124 @@
 
     .floating-whatsapp i {
       font-size: 1.3rem;
+    }
+
+    /* نافذة منبثقة لتفاصيل المنتج بالكامل (Modal) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 440px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      animation: modalSlide 0.25s ease-out;
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .modal-image-wrap {
+      width: 100%;
+      height: 250px;
+      background: #0f141d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .modal-content {
+      padding: 1.2rem;
+    }
+
+    .modal-cat {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .modal-full-desc {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      background: #161c28;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-price {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .modal-price span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
   </style>
 </head>
@@ -320,7 +437,7 @@
     <div class="products-grid">
 
       <!-- منتج 1 -->
-      <article class="product-card" data-category="hair">
+      <article class="product-card" data-category="hair" onclick="openDetails(1)">
         <div class="image-box">
           <img src="1.png" alt="زيت باراشوت بالبصل">
         </div>
@@ -328,11 +445,11 @@
           <div>
             <div class="category-tag">عناية بالشعر</div>
             <h3 class="product-title">زيت باراشوت بالبصل لتكثيف الشعر</h3>
-            <p class="product-desc">مزيج طبيعي يقلل التساقط ويغذي بصيلات الشعر من الجذور حتى الأطراف.</p>
+            <p class="product-desc">مزيج طبيعي يقلل التساقط ويغذي بصيلات الشعر من الجذور حتى الأطراف...</p>
           </div>
           <div>
             <div class="price-box">4,000 <span>ر.ي</span></div>
-            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20زيت%20باراشوت%20بالبصل%20بسعر%204000%20ريال%20يمني" target="_blank" class="order-btn">
+            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20زيت%20باراشوت%20بالبصل%20بسعر%204000%20ريال%20يمني" target="_blank" class="order-btn" onclick="event.stopPropagation()">
               <i class="fa-brands fa-whatsapp"></i> اطلب عبر واتساب
             </a>
           </div>
@@ -340,7 +457,7 @@
       </article>
 
       <!-- منتج 2 -->
-      <article class="product-card" data-category="hair">
+      <article class="product-card" data-category="hair" onclick="openDetails(2)">
         <div class="image-box">
           <img src="2.png" alt="تونك فازلين الأزرق">
         </div>
@@ -348,11 +465,11 @@
           <div>
             <div class="category-tag">عناية بالشعر</div>
             <h3 class="product-title">تونك فازلين الأزرق للشعر</h3>
-            <p class="product-desc">يحمي فروة الرأس من الجفاف ويمنح الشعر حيوية ولمعاناً طبيعياً.</p>
+            <p class="product-desc">يحمي فروة الرأس من الجفاف ويمنح الشعر حيوية ولمعاناً طبيعياً طوال اليوم...</p>
           </div>
           <div>
             <div class="price-box">2,500 <span>ر.ي</span></div>
-            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20تونك%20فازلين%20الأزرق%20بسعر%202500%20ريال%20يمني" target="_blank" class="order-btn">
+            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20تونك%20فازلين%20الأزرق%20بسعر%202500%20ريال%20يمني" target="_blank" class="order-btn" onclick="event.stopPropagation()">
               <i class="fa-brands fa-whatsapp"></i> اطلب عبر واتساب
             </a>
           </div>
@@ -360,7 +477,7 @@
       </article>
 
       <!-- منتج 3 -->
-      <article class="product-card" data-category="skin">
+      <article class="product-card" data-category="skin" onclick="openDetails(3)">
         <div class="image-box">
           <img src="3.png" alt="سيروم فيتامين C لوف جوجو">
         </div>
@@ -368,11 +485,11 @@
           <div>
             <div class="category-tag">عناية بالبشرة</div>
             <h3 class="product-title">سيروم فيتامين C المركز (لوف جوجو)</h3>
-            <p class="product-desc">مضاد أكسدة فائق لتفتيح وتوحيد لون البشرة ومحاربة الشحوب والتجاعيد.</p>
+            <p class="product-desc">مضاد أكسدة فائق لتفتيح وتوحيد لون البشرة ومحاربة الشحوب والتجاعيد...</p>
           </div>
           <div>
             <div class="price-box">3,500 <span>ر.ي</span></div>
-            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20سيروم%20فيتامين%20C%20لوف%20جوجو%20بسعر%203500%20ريال%20يمني" target="_blank" class="order-btn">
+            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20سيروم%20فيتامين%20C%20لوف%20جوجو%20بسعر%203500%20ريال%20يمني" target="_blank" class="order-btn" onclick="event.stopPropagation()">
               <i class="fa-brands fa-whatsapp"></i> اطلب عبر واتساب
             </a>
           </div>
@@ -380,7 +497,7 @@
       </article>
 
       <!-- منتج 4 -->
-      <article class="product-card" data-category="skin">
+      <article class="product-card" data-category="skin" onclick="openDetails(4)">
         <div class="image-box">
           <img src="4.png" alt="زبدة الجسم جوز الهند">
         </div>
@@ -388,11 +505,11 @@
           <div>
             <div class="category-tag">عناية بالبشرة والجسم</div>
             <h3 class="product-title">زبدة الجسم الطبيعية برائحة جوز الهند</h3>
-            <p class="product-desc">ترطيب مكثف وعميق للمناطق الجافة مع لمسة عطرية استوائية تدوم طويلاً.</p>
+            <p class="product-desc">ترطيب مكثف وعميق للمناطق الجافة مع لمسة عطرية استوائية تدوم طويلاً...</p>
           </div>
           <div>
             <div class="price-box">5,000 <span>ر.ي</span></div>
-            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20زبدة%20الجسم%20جوز%20الهند%20بسعر%205000%20ريال%20يمني" target="_blank" class="order-btn">
+            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20زبدة%20الجسم%20جوز%20الهند%20بسعر%205000%20ريال%20يمني" target="_blank" class="order-btn" onclick="event.stopPropagation()">
               <i class="fa-brands fa-whatsapp"></i> اطلب عبر واتساب
             </a>
           </div>
@@ -400,7 +517,7 @@
       </article>
 
       <!-- منتج 5 -->
-      <article class="product-card" data-category="hair">
+      <article class="product-card" data-category="hair" onclick="openDetails(5)">
         <div class="image-box">
           <img src="5.png" alt="تونك الشعر فازلين">
         </div>
@@ -408,11 +525,11 @@
           <div>
             <div class="category-tag">عناية بالشعر</div>
             <h3 class="product-title">تونك فازلين الكلاسيكي لتقوية الشعر</h3>
-            <p class="product-desc">ينشط الدورة الدموية في فروة الرأس ويمنح الشعر لمعاناً وحيوية فائقة.</p>
+            <p class="product-desc">ينشط الدورة الدموية في فروة الرأس ويمنح الشعر لمعاناً وحماية من القشرة والجفاف...</p>
           </div>
           <div>
             <div class="price-box">3,000 <span>ر.ي</span></div>
-            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20تونك%20الشعر%20فازلين%20بسعر%203000%20ريال%20يمني" target="_blank" class="order-btn">
+            <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20تونك%20الشعر%20فازلين%20بسعر%203000%20ريال%20يمني" target="_blank" class="order-btn" onclick="event.stopPropagation()">
               <i class="fa-brands fa-whatsapp"></i> اطلب عبر واتساب
             </a>
           </div>
@@ -422,12 +539,93 @@
     </div>
   </main>
 
+  <!-- نافذة تفاصيل المنتج المنبثقة -->
+  <div class="modal-overlay" id="productModal" onclick="closeDetails()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeDetails()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-image-wrap">
+        <img id="mImg" src="" alt="صورة المنتج">
+      </div>
+      <div class="modal-content">
+        <div class="modal-cat" id="mCat">القسم</div>
+        <h2 class="modal-title" id="mTitle">اسم المنتج</h2>
+        <div class="modal-full-desc" id="mDesc">الوصف الكامل للمنتج</div>
+        <div class="modal-footer">
+          <div class="modal-price" id="mPrice">000 <span>ر.ي</span></div>
+          <a href="#" id="mBtn" target="_blank" class="order-btn" style="width: auto; padding: 10px 24px;">
+            <i class="fa-brands fa-whatsapp"></i> طلب الآن
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- زر واتساب العائم -->
   <a href="https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أرغب%20في%20الاستفسار%20عن%20منتجاتكم" target="_blank" class="floating-whatsapp">
     <i class="fa-brands fa-whatsapp"></i> تواصل مع المحل واتساب
   </a>
 
   <script>
+    // قاعدة بيانات المنتجات لعرض التفاصيل الكاملة
+    const productsData = {
+      1: {
+        img: '1.png',
+        cat: 'عناية بالشعر',
+        title: 'زيت باراشوت بالبصل لتكثيف الشعر',
+        desc: 'زيت باراشوت بالبصل وجوز الهند المعزز بخلاصة الزيوت الطبيعية النقية. يعمل بفعالية على تقوية بصيلات الشعر الضعيفة والحد من التساقط بشكل ملحوظ، كما يحفز نمو الشعر ويمنحه كثافة ولمعاناً فائقاً مع رائحة لطيفة تدوم طويلاً.',
+        price: '4,000 ر.ي',
+        link: 'https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20زيت%20باراشوت%20بالبصل%20بسعر%204000%20ريال%20يمني'
+      },
+      2: {
+        img: '2.png',
+        cat: 'عناية بالشعر',
+        title: 'تونك فازلين الأزرق للشعر',
+        desc: 'تونك فازلين للشعر بتركيبته الكلاسيكية الموثوقة. يرطب فروة الرأس ويحميها من الجفاف وظهور القشرة، ويساعد على تصفيف وتثبيت الشعر بإطلالة صحية ولامعة تدوم طوال اليوم دون أن يترك ملمساً دهنياً مزعجاً.',
+        price: '2,500 ر.ي',
+        link: 'https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20تونك%20فازلين%20الأزرق%20بسعر%202500%20ريال%20يمني'
+      },
+      3: {
+        img: '3.png',
+        cat: 'عناية بالبشرة',
+        title: 'سيروم فيتامين C المركز (لوف جوجو)',
+        desc: 'سيروم غني بفيتامين C المركز ومضادات الأكسدة وحمض الهيالورونيك. يمنح البشرة إشراقة فورية ونضارة طبيعية، ويوحد لون البشرة ويقلل من آثار البقع والتصبغات الداكنة ويحفز إنتاج الكولاجين لمقاومة الخطوط الرفيعة والتجاعيد.',
+        price: '3,500 ر.ي',
+        link: 'https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20سيروم%20فيتامين%20C%20لوف%20جوجو%20بسعر%203500%20ريال%20يمني'
+      },
+      4: {
+        img: '4.png',
+        cat: 'عناية بالبشرة والجسم',
+        title: 'زبدة الجسم الطبيعية برائحة جوز الهند',
+        desc: 'زبدة ترطيب فاخرة وقوام غني يذوب على البشرة بسهولة ليمنحها ترطيباً عميقاً يستمر لأكثر من 24 ساعة. مثالية للأماكن الجافة والخشنة كالركب والأكواع، برائحة جوز الهند الاستوائية المنعشة التي تجعلك تشعر بالانتعاش الدائم.',
+        price: '5,000 ر.ي',
+        link: 'https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20زبدة%20الجسم%20جوز%20الهند%20بسعر%205000%20ريال%20يمني'
+      },
+      5: {
+        img: '5.png',
+        cat: 'عناية بالشعر',
+        title: 'تونك فازلين الكلاسيكي لتقوية الشعر',
+        desc: 'تركيبة مخصصة لتنشيط الدورة الدموية في فروة الرأس وتغذية جذور الشعر. يساعد في علاج جفاف وتقصف الشعر الناتج عن العوامل الجوية، ويمنحك تصفيفاً أنيقاً ومرناً وشعراً بمظهر حيوي وأكثر جاذبية.',
+        price: '3,000 ر.ي',
+        link: 'https://wa.me/967773555427?text=مرحباً%20متجر%20سبأ،%20أريد%20طلب:%20تونك%20الشعر%20فازلين%20بسعر%203000%20ريال%20يمني'
+      }
+    };
+
+    function openDetails(id) {
+      const p = productsData[id];
+      if (!p) return;
+      document.getElementById('mImg').src = p.img;
+      document.getElementById('mCat').innerText = p.cat;
+      document.getElementById('mTitle').innerText = p.title;
+      document.getElementById('mDesc').innerText = p.desc;
+      document.getElementById('mPrice').innerHTML = p.price;
+      document.getElementById('mBtn').href = p.link;
+      document.getElementById('productModal').style.display = 'flex';
+    }
+
+    function closeDetails() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+
     function filterProducts(cat, btn) {
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
